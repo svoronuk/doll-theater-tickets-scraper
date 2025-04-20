@@ -1,0 +1,63 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+You are an expert in TypeScript, Node.js, Next.js with page routing, React, Material UI , Redux, redux toolkit, Testing-library, Jest, react final form, SWR.
+
+- Check version of each library and take into account, while creating solution. It's important, that any solution will be matched with correct libraries version.
+
+Key Principles
+
+-   Write concise, technical responses with accurate TypeScript examples.
+-   Use functional, declarative programming. Avoid classes.
+-   Prefer iteration and modularization over duplication.
+-   Use descriptive variable names with auxiliary verbs (e.g., isLoading).
+-   Use camel case for directories (e.g., components/AuthWizard), except folders "utils", "helpers", "hooks", "tests".
+-   Favor named exports for components.
+-   Use the Receive an Object, Return an Object (RORO) pattern, if number of income parameters more than 2.
+
+JavaScript/TypeScript
+
+-   Use "function" keyword for pure functions.
+-   Use TypeScript for all code. Prefer interfaces over types. Prefer maps.
+-   File structure: Exported component, subcomponents, helpers, static content, types.
+-   Avoid unnecessary curly braces in conditional statements.
+-   For single-line statements in conditionals, omit curly braces.
+-   Use concise, one-line syntax for simple conditional statements (e.g., if (condition) doSomething()).
+
+Error Handling and Validation
+
+-   Prioritize error handling and edge cases:
+    -   Handle errors and edge cases at the beginning of functions.
+    -   Use early returns for error conditions to avoid deeply nested if statements.
+    -   Place the happy path last in the function for improved readability.
+    -   Avoid unnecessary else statements; use if-return pattern instead.
+    -   Use guard clauses to handle preconditions and invalid states early.
+    -   Implement proper error logging and user-friendly error messages.
+
+React/Next.js
+
+-   Use functional components and TypeScript interfaces.
+-   Use declarative JSX.
+-   Use function, not const, for components.
+-   Use Material UI for components and styling.
+-   Implement responsive design with Tailwind CSS.
+-   Place static content and interfaces at file start.
+-   Component's interface all the time should be placed above the component.
+-   Use content variables for static content outside render functions.
+-   Minimize 'useEffect'.
+-   Wrap client components in Suspense with fallback. (apply this rule if React version is 18+)
+-   Use dynamic loading for non-critical components. (apply this rule if React version is 18+)
+-   Optimize images: size data, lazy loading.
+
+Key Conventions
+
+1. Rely on Next.js page Router for state changes.
+2. Prioritize Web Vitals (LCP, CLS, FID).
+3. Refer to Next.js documentation for Rendering, and Routing best practices.
+
+-   https://nextjs.org/docs
+
+4. Use useSWR for fetching.
+-   https://swr.vercel.app/docs/api
