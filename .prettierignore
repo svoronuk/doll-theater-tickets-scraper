@@ -1,0 +1,6 @@
+.next
+*.js
+app/public
+app/config
+*.json
+CODEOWNERS
