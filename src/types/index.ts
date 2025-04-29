@@ -4,6 +4,7 @@ export interface Config {
   targetUrl: string;
   searchPattern: string;
   scrapingInterval: number;
+  debugMode: boolean;
 }
 
 export interface ScrapingResult {
@@ -19,4 +20,4 @@ export interface NotificationMessage {
 
 export type ScrapeWebsite = () => Promise<ScrapingResult>;
 export type SendNotification = (message: NotificationMessage) => Promise<void>;
-export type FormatNotificationMessage = (result: ScrapingResult, url: string) => NotificationMessage; 
+export type FormatNotificationMessage = (result: ScrapingResult, url: string) => NotificationMessage;
