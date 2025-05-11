@@ -14,8 +14,9 @@ function extractMonths($: cheerio.CheerioAPI): { id: string; name: string }[] {
 	return months;
 }
 
-function extractShows($: cheerio.CheerioAPI): { name: string; date: string; link: string }[] {
-	const shows: { name: string; date: string; link: string }[] = [];
+type Show = { name: string; date: string; link: string };
+function extractShows($: cheerio.CheerioAPI): Show[] {
+	const shows: Show[] = [];
 	$('.afisha_listcontainer table.display tbody tr').each((_, el) => {
 		const tds = $(el).find('td');
 		if (tds.length < 2) return;

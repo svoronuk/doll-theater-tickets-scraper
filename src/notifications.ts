@@ -25,6 +25,11 @@ export function formatShowMessage(show: Show): string {
 	return msg;
 }
 
+export function formatShowListMessage(shows: Show[]): string {
+	if (!shows.length) return 'Нет спектаклей для этого месяца.';
+	return shows.map((show, idx) => `${idx + 1}. <b>${show.name}</b> — ${show.date}`).join('\n');
+}
+
 export async function notifyForMonth(month: { id: string; name: string }, shows: Show[]) {
 	await sendNotification({
 		text: `🎉 Новыя спектаклі з'явіліся: ${month.name}`,
