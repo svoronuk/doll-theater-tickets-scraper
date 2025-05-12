@@ -10,5 +10,3 @@ cron.schedule('* * * * *', checkWebsite);
 
 // Schedule the selector health check to run every hour
 cron.schedule('0 * * * *', checkSelectorsHealth);
-
-checkWebsite();

@@ -3,11 +3,23 @@ import { sendNotification, createNotificationMessage } from './services/telegram
 import { config } from './config/config';
 
 export const showImages: Record<string, string> = {
-	Щелкунчик: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Bolshoi_Theatre_2011.jpg',
-	Гамлет: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Theatre_stage_curtain.jpg',
-	'Ромео и Джульетта':
-		'https://upload.wikimedia.org/wikipedia/commons/3/3a/Teatro_alla_Scala.jpg',
-	// Add more mappings as needed
+	'Услуги мастер - класс': 'https://puppet-minsk.by/images/Afisha/master-klass.jpg',
+	МРОIВА: 'https://puppet-minsk.by/images/Afisha/mroiva.jpg',
+	Бабочки: 'https://puppet-minsk.by/images/Afisha/babochki.jpg',
+	'В стране невыученных уроков': 'https://puppet-minsk.by/images/Afisha/uroki_afisha.jpg',
+	'Ноч перад калядамi': 'https://puppet-minsk.by/images/Afisha/noch-perad-kalyadami.jpg',
+	'Красная Шапочка': 'https://puppet-minsk.by/images/Afisha/krasnaya-shapochka.jpg',
+	'Умная собачка Соня': 'https://puppet-minsk.by/images/Afisha/umnaya-sobachka-sonya.jpg',
+	'Записки юного врача': 'https://puppet-minsk.by/images/Afisha/young_doctor_afisha.jpg',
+	'Кот в сапогах': 'https://puppet-minsk.by/images/Afisha/kot_v_sapogah.jpg',
+	'За снежной королевой': 'https://puppet-minsk.by/images/Afisha/za-snezhnoj-korolevoj.jpg',
+	'Волк и семеро козлят': 'https://puppet-minsk.by/images/Afisha/volk_i_semero_kozlyat.jpg',
+	'Пансион «Belvedere»': 'https://puppet-minsk.by/images/Afisha/belvedere_afisha_3.jpg',
+	'На чёрной-чёрной улице':
+		'https://puppet-minsk.by/images/Afisha/na-chjornoj-chjornoj-ulitse.jpg',
+	'Проданный смех': 'https://puppet-minsk.by/images/Afisha/prodannyj-smekh.jpg',
+	Киви: 'https://puppet-minsk.by/images/Afisha/kivi.jpg',
+	Хутор: 'https://puppet-minsk.by/images/Afisha/khutor.jpg',
 };
 
 function splitDateTime(dateStr: string): { date: string; time?: string } {
@@ -18,10 +30,9 @@ function splitDateTime(dateStr: string): { date: string; time?: string } {
 
 export function formatShowMessage(show: Show): string {
 	const { date, time } = splitDateTime(show.date);
-	let msg = `<b>${show.name}</b>\n`;
-	msg += `🗓 ${date}\n`;
-	if (time) msg += `⏰ ${time}\n`;
-	msg += `<a href=\"${show.link}\">Перейти к спектаклю</a>`;
+	let msg = `<b>${show.name}</b>\n${date}${time ? `\n${time}` : ''}`;
+	msg += `\n<i>Евгений Корняг</i>`;
+	msg += `\n<a href=\"${show.link}\">Перейти к спектаклю</a>`;
 	return msg;
 }
 

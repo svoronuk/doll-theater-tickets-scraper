@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { config } from '../config/config';
 import { ScrapingResult, ScrapeWebsite } from '../types';
@@ -6,7 +5,7 @@ import { fetchLikeBrowser } from '../utils/fetchLikeBrowser';
 
 function extractMonths($: cheerio.CheerioAPI): { id: string; name: string }[] {
 	const months: { id: string; name: string }[] = [];
-	$('a[data-m]').each((_, el) => {
+	$('.button-wrapper button[data-m]').each((_, el) => {
 		const id = $(el).attr('data-m');
 		const name = $(el).text().replace(/\s+/g, ' ').trim();
 		if (id && name) months.push({ id, name });
@@ -17,15 +16,17 @@ function extractMonths($: cheerio.CheerioAPI): { id: string; name: string }[] {
 type Show = { name: string; date: string; link: string };
 function extractShows($: cheerio.CheerioAPI): Show[] {
 	const shows: Show[] = [];
-	$('.afisha_listcontainer table.display tbody tr').each((_, el) => {
-		const tds = $(el).find('td');
-		if (tds.length < 2) return;
-		const date = $(tds[0]).text().replace(/\s+/g, ' ').trim();
-		const linkEl = $(tds[1]).find('a');
-		const name = linkEl.text().trim();
-		const href = linkEl.attr('href');
-		if (name && date && href) {
-			shows.push({ name, date, link: href });
+	const baseUrl = new URL(config.targetUrl).origin;
+	$('.afisha_item').each((_, el) => {
+		const info = $(el).find('.afisha-info');
+		const day = info.find('.afisha-day').text().replace(/\s+/g, ' ').trim();
+		const time = info.find('.afisha-time').text().replace(/\s+/g, ' ').trim();
+		const name = info.find('.afisha-title').text().replace(/\s+/g, ' ').trim();
+		const link = $(el).find('a.afisha_item-hover').attr('href');
+		const absoluteLink = link && link.startsWith('/') ? baseUrl + link : link;
+		const date = time ? `${day} ${time}`.trim() : day;
+		if (name && date && absoluteLink) {
+			shows.push({ name, date, link: absoluteLink });
 		}
 	});
 	return shows;
