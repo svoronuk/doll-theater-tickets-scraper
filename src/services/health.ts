@@ -7,18 +7,18 @@ export async function checkSelectorsHealth() {
 	try {
 		const response = await axios.get(config.targetUrl);
 		const $ = cheerio.load(response.data);
-		const monthsCount = $('a[data-m]').length;
-		const showsCount = $('.afisha_listcontainer table.display tbody tr').length;
+		const monthsCount = $('.button-wrapper button[data-m]').length;
+		const showsCount = $('.afisha_item').length;
 		if (monthsCount === 0) {
 			await sendNotification({
-				text: '❗️Ошибка: CSS селектор для месяцев (a[data-m]) не найден на странице.',
+				text: '❗️Ошибка: CSS селектор для месяцев (.button-wrapper button[data-m]) не найден на странице.',
 				chatId: config.telegramChatId,
 				parseMode: 'HTML',
 			});
 		}
 		if (showsCount === 0) {
 			await sendNotification({
-				text: '❗️Ошибка: CSS селектор для таблицы спектаклей (.afisha_listcontainer table.display tbody tr) не найден на странице.',
+				text: '❗️Ошибка: CSS селектор для спектаклей (.afisha_item) не найден на странице.',
 				chatId: config.telegramChatId,
 				parseMode: 'HTML',
 			});
