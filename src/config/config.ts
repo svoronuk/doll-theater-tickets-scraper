@@ -5,7 +5,10 @@ dotenv.config();
 
 export const config: Config = {
 	telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
-	telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
+	telegramChatId:
+		process.env.DEBUG_MODE === 'true'
+			? process.env.TELEGRAM_DEBUG_CHAT_ID || ''
+			: process.env.TELEGRAM_CHAT_ID || '',
 	targetUrl: process.env.TARGET_URL || '',
 	scrapingInterval: parseInt(process.env.SCRAPING_INTERVAL || '60000', 10),
 	debugMode: process.env.DEBUG_MODE === 'true',
