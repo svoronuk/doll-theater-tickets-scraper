@@ -43,8 +43,6 @@ export async function checkWebsite(): Promise<void> {
 		const storedMonths = loadMonths();
 		const showList = getShowList();
 
-		console.log('checkWebsite', config.debugMode);
-
 		if (config.debugMode) {
 			// Dev mode: simulate next month
 			let latestMonthId =
@@ -98,6 +96,7 @@ export async function checkWebsite(): Promise<void> {
 				const showMonthId = show.date ? show.date.slice(0, 7) : '';
 				return showMonthId === month.id;
 			});
+
 			await sendNotification({
 				text: `🎉 Новыя спектаклі з'явіліся: ${month.name}`,
 				chatId: config.telegramChatId,
